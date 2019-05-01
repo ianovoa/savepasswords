@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Nueva contraseña</title>
+        <link href="style.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript">
+            function hideAnswer() {
+                var dvAnswer = document.getElementById( "dvAnswer" );
+                dvAnswer.innerHTML = "";
+                dvAnswer.style.display = "none";
+            }
+
+            function showAnswer(msg) {
+                var dvAnswer = document.getElementById( "dvAnswer" );
+                dvAnswer.innerHTML = msg;
+                dvAnswer.style.display = "block";
+            }
+
+            function validate() {
+                hideAnswer();
+                toret = true;
+                var form = document.getElementById("newPass");
+                var name = form["name"].value.trim();
+                var pass = form["pass"].value.trim();
+                if(name.trim().length == 0 || pass.trim().length == 0){
+                    showAnswer("Nombre y Contraseña no pueden estar vacios");
+                    toret = false;
+                }
+                return toret;
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Nueva contraseña</h1>
+        <p>Introduzca su nueva contraseña:</p>
+        <div id="form">
+            <form id="newPass" action="/new" method="post" onSubmit="return validate();">
+                &nbsp;<label for="name">Nombre: </label>
+                <input id="name" name="name" type="text" size="20"/>
+                <br>
+                &nbsp;<label for="pass">Contraseña: </label>
+                <input id="pass" name="pass" type="text" size="20"/>
+                <br>
+                &nbsp;<label for="url">Dirección web: </label>
+                <input id="url" name="url" type="text" size="20"/>
+                <br>
+                <div id="buttons">
+                    <input id="btSubmit" type="submit" value="Enviar"/>
+                    <input id="btReset" type="reset" value="Reiniciar" onClick="hideAnswer();"/>
+                </div>
+            </form>
+            <br>
+        </div>
+        <div id="dvAnswer"></div>
+    </body>
+</html>

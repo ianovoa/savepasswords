@@ -1,0 +1,49 @@
+body {
+    margin: 50px 50px 50px 50px;
+    background-color: white;
+	color: black;
+	font-familiy: serif;
+	font-size: 18pt
+}
+
+table, th, td {
+    margin: 50px 50px 50px 50px;
+    border: 1px solid black;
+    background-color: moccasin;
+    text-align: center;
+}
+
+h1 {
+    color: red;
+}
+
+#form {
+    height: 80%;
+    margin: 10px 10px 10px 10px
+}
+
+#dvAnswer {
+    font-size: 20pt;
+    height: 10%;
+    color: white;
+    background-color: red;
+    display: none
+}
+
+#newPass {
+	background-color: moccasin
+}
+
+#buttons {
+    padding-top: 10pt;
+    background-color: white;
+    color: black
+}
+
+#btSubmit, #btReset {
+    padding: 20px 20px 20px 20px;
+    margin-right: 20px;
+    background-color: darkred;
+    color: white;
+    font-size: 14pt
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Contraseñas</title>
+        <link href="style.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <h1>Contraseñas guardadas</h1>
+        <p><a href="/loadNew">Añadir contraseña</a> </p>
+        <br>
+        <table style="width: 80%">
+            <tr>
+                <th>Nombre</th>
+                <th>Contraseña</th>
+                <th>URL</th>
+                <th>Borrar</th>
+            </tr>
+            {% for pass in passwords %}
+            <tr>
+                <td>{{ "%s"|format(pass.name) }}</td>
+                <td>{{ "%s"|format(pass.password) }}</td>
+                <td>{{ "%s"|format(pass.url) }}</td>
+                <td><a href="/delete?id={{ '%s'|format(pass.id) }}">Borrar</a> </td>
+            </tr>
+            {% else %}
+            <tr><td colspan="4">No hay contraseñas guardadas</td></tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>
