@@ -13,6 +13,18 @@ handlers:
   static_files: favicon.ico
   upload: favicon\.ico
 
+- url: /style\.css
+  static_files: style.css
+  upload: style\.css
+
+- url: /img/mas\.png
+  static_files: img/mas.png
+  upload: /img/mas\.png
+
+- url: /img/borrar\.png
+  static_files: img/borrar.png
+  upload: /img/borrar\.png
+
 - url: .*
   script: main.app
 

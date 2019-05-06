@@ -7,7 +7,7 @@
     </head>
     <body>
         <h1>Contraseñas guardadas</h1>
-        <p><a href="/loadNew"><img src="img/mas.png">Añadir contraseña</a> </p>
+        <p><a href="/loadNew"><img src="img/mas.png" width="3%">Añadir contraseña</a> </p>
         <br>
         <table style="width: 80%">
             <tr>
@@ -23,7 +23,7 @@
                 <td>{{ "%s"|format(pass.user) }}</td>
                 <td>{{ "%s"|format(pass.password) }}</td>
                 <td>{{ "%s"|format(pass.url) }}</td>
-                <td><a href="/del?key={{ pass.key }}"><img src="img/borrar.png">Borrar</a> </td>
+                <td><a href="/del?key={{ pass.key }}"><img src="img/borrar.png" width="3%">Borrar</a> </td>
             </tr>
             {% else %}
             <tr><td colspan="5">No hay contraseñas guardadas</td></tr>
