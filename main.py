@@ -1,27 +1,18 @@
-#!/usr/bin/env python
-#
-# Copyright 2007 Google Inc.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
-
+from google.appengine.ext import ndb
 import webapp2
-from core import Password
 import jinja2
 import os
+import time
 
 
 JINJA_ENVIRONMENT = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.dirname(__file__)), extensions=["jinja2.ext.autoescape"], autoescape=True)
+
+
+class Password(ndb.Model):
+    name = ndb.StringProperty(required=True)
+    user = ndb.StringProperty(required=True)
+    password = ndb.StringProperty(required=True)
+    url = ndb.StringProperty()
 
 
 class PassView(webapp2.RequestHandler):
@@ -41,13 +32,15 @@ class LoadNewPass(webapp2.RequestHandler):
 class NewPass(webapp2.RequestHandler):
     def load_input(self):
         self.name = self.request.get("name", "no_name")
+        self.user = self.request.get("user", "no_user")
         self.password = self.request.get("pass", "no_pass")
-        self.url = self.request.get("url", "")
+        self.url = self.request.get("url", "no_url")
 
     def post(self):
         self.load_input()
-        password = Password(name=self.name, password=self.password, url=self.url)
+        password = Password(name=self.name, user=self.user, password=self.password, url=self.url)
         password.put()
+        time.sleep(0.5)
         passwords = Password.query()
         template_values = {'passwords': passwords}
         template = JINJA_ENVIRONMENT.get_template("passView.html")
@@ -55,8 +48,16 @@ class NewPass(webapp2.RequestHandler):
 
 
 class DeletePass(webapp2.RequestHandler):
+    def load_input(self):
+        key = self.request.get("key", None)
+        self.id=key[16:len(key)-1]
+
+
     def get(self):
-        # falta delete en bd
+        self.load_input()
+        p=Password.get_by_id(int(self.id))
+        p.key.delete()
+        time.sleep(0.5)
         passwords = Password.query()
         template_values = {'passwords': passwords}
         template = JINJA_ENVIRONMENT.get_template("passView.html")

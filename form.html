@@ -22,9 +22,10 @@
                 toret = true;
                 var form = document.getElementById("newPass");
                 var name = form["name"].value.trim();
+                var user = form["user"].value.trim();
                 var pass = form["pass"].value.trim();
-                if(name.trim().length == 0 || pass.trim().length == 0){
-                    showAnswer("Nombre y Contraseña no pueden estar vacios");
+                if(name.trim().length == 0 || pass.trim().length == 0 || user.trim().length == 0){
+                    showAnswer("Nombre, Usuario y Contraseña no pueden estar vacios");
                     toret = false;
                 }
                 return toret;
@@ -38,6 +39,9 @@
             <form id="newPass" action="/new" method="post" onSubmit="return validate();">
                 &nbsp;<label for="name">Nombre: </label>
                 <input id="name" name="name" type="text" size="20"/>
+                <br>
+                &nbsp;<label for="user">Usuario: </label>
+                <input id="user" name="user" type="text" size="20"/>
                 <br>
                 &nbsp;<label for="pass">Contraseña: </label>
                 <input id="pass" name="pass" type="text" size="20"/>

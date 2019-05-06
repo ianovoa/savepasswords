@@ -1,6 +1,6 @@
 application: savepasswords
 version: 1
-runtime: python37
+runtime: python27
 api_version: 1
 threadsafe: yes
 
